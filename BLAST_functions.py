@@ -38,7 +38,7 @@ def run_BLAST(queryFilePath, dbPath, isNucleotideDB, blast_out_file):
 	return blast_out_file
 
 
-def runBlastParser(cline, bOutFile, locus_sbjct):
+def runBlastParser(bOutFile, locus_sbjct):
 	os.system(str(cline))
 	rec = open(bOutFile)
 	blast_records = NCBIXML.parse(rec)

@@ -7,6 +7,9 @@ from os import listdir
 from os.path import isfile, join, isdir
 import sys
 from datetime import datetime
+import HTSeq
+from BSR_functions import getOwnBlastScore
+from BSR_functions import getBlastScoreRatios
 
 
 
@@ -23,7 +26,15 @@ def main():
 
 	currentDir = os.getcwd()
 
-	if not os.path.isdir(os.path.join(args.o)):
-		os.makedirs(os.path.join(args.o))
+	databaseDir = os.path.join(os.getcwd(), 'Databases')
 
-	with open(os.path.join(currentDir, args.r), "r") as referenceFile:
+	if not os.path.isdir(args.o):
+		os.makedirs(args.o)
+
+	if not os.path.isdir(databaseDir):
+		os.makedirs(databaseDir)
+
+	getOwnBlastScore(FASTAfile, dbName, blast_out_file)
+
+	getBlastScoreRatios(pathQuery, pathDB, allelescores, bestmatches, blast_out_file):
+    
