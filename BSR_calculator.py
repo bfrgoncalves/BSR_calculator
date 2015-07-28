@@ -12,6 +12,9 @@ from BSR_functions import getOwnBlastScore
 from BSR_functions import getBlastScoreRatios
 from Translate_functions import translateSeq
 
+from cluster_utils import create_pickle, create_Jobs
+import pickle
+
 
 
 
