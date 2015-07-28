@@ -66,7 +66,7 @@ def main():
 
 	for allelefile in onlyfiles:
 
-		alleleFilePath = os.path.join(os.getcwd(), allelefile)
+		alleleFilePath = os.path.join(os.getcwd(), 'Alleles', allelefile)
 		countAlleles += 1
 		dbName = os.path.join(databaseDir, 'refDatabase' + str(countAlleles))
 		blast_out_file = dbName + '_BLAST_out_' + str(countAlleles) + '.xml'
