@@ -5,9 +5,12 @@ from os import listdir
 from os.path import isfile, join, isdir
 import sys
 from Bio.Blast import NCBIXML
+from Bio.Blast.Applications import NcbiblastpCommandline
+from Bio.Blast.Applications import NcbiblastnCommandline
 
 
-def Create_Blastdb(questionDB, overwrite, dbtypeProt,dbName ):
+
+def Create_Blastdb(questionDB, overwrite, dbtypeProt, dbName ):
 	
 	isProt=dbtypeProt
 
@@ -30,16 +33,22 @@ def Create_Blastdb(questionDB, overwrite, dbtypeProt,dbName ):
 	return( dbName )
 
 
-def run_BLAST(queryFilePath, dbPath, isNucleotideDB, blast_out_file):
+def run_BLAST(databaseFilePath, dbPath, queryFilePath, isNucleotideDB, blast_out_file):
 	
-	Create_Blastdb( dbPath, 1, isNucleotideDB, name)
-	cline = NcbiblastpCommandline(query=queryFilePath, db=name, out=blast_out_file, outfmt=5)
+	Create_Blastdb(databaseFilePath, 1, isNucleotideDB, dbPath)
+	queryPath = os.path.join(os.getcwd(), queryFilePath)
 
+	if isNucleotideDB:
+		cline = NcbiblastnCommandline(query=queryPath, db=dbPath, out=blast_out_file, outfmt=5)
+	else:
+		cline = NcbiblastpCommandline(query=queryPath, db=dbPath, out=blast_out_file, outfmt=5)
+
+	os.system(str(cline))
+	print cline
 	return blast_out_file
 
 
 def runBlastParser(bOutFile, locus_sbjct):
-	os.system(str(cline))
 	rec = open(bOutFile)
 	blast_records = NCBIXML.parse(rec)
 
