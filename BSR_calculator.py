@@ -75,6 +75,8 @@ def main():
 
 	create_Jobs(job_args, 'getOwnBLASTScore.py', allQueryBasePaths)
 
+	countResults = 0
+	
 	for i in allQueryBasePaths:
 		countResults += 1
 		filepath=os.path.join(i, str(countResults)+"_"+ action + "_result.txt")
