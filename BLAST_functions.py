@@ -34,14 +34,23 @@ def Create_Blastdb(questionDB, overwrite, dbtypeProt, dbName ):
 
 
 def run_BLAST(databaseFilePath, dbPath, queryFilePath, isNucleotideDB, blast_out_file):
+
+	databaseName = os.path.basename(dbPath)
+
+	if not os.path.isdir(databaseName):
+		os.makedirs(databaseName)
+
+	realdbPath = os.path.join(dbPath, databaseName)
 	
-	Create_Blastdb(databaseFilePath, 0, isNucleotideDB, dbPath)
+	Create_Blastdb(databaseFilePath, 0, isNucleotideDB, realdbPath)
 	queryPath = os.path.join(os.getcwd(), queryFilePath)
 
+	print queryPath
+
 	if isNucleotideDB:
-		cline = NcbiblastnCommandline(query=queryPath, db=dbPath, out=blast_out_file, outfmt=5)
+		cline = NcbiblastnCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5)
 	else:
-		cline = NcbiblastpCommandline(query=queryPath, db=dbPath, out=blast_out_file, outfmt=5)
+		cline = NcbiblastpCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5)
 
 	os.system(str(cline))
 	print cline
