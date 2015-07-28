@@ -101,9 +101,10 @@ def main():
 
 	for allelefile in onlyfiles:
 		countAlleles += 1
+		alleleFilePath = os.path.join(os.getcwd(), 'Alleles', allelefile)
 		dbName = os.path.join(databaseDir, 'refDatabase')
 		blast_out_file = dbName + '_BLAST_out_' + str(countAlleles) + '.xml'
-		listOfArgs = (allelefile, referencePath, dbName, alleleScores, blast_out_file, countAlleles)
+		listOfArgs = (alleleFilePath, referencePath, dbName, alleleScores, blast_out_file, countAlleles)
 		action = 'BSR'
 		job_args, allQueryBasePaths = create_pickle(listOfArgs, uniqueAllelesFolder, job_args, action, 'BSR', allQueryBasePaths, countAlleles)
 
