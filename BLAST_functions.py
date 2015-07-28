@@ -44,7 +44,7 @@ def run_BLAST(databaseFilePath, dbPath, queryFilePath, isNucleotideDB, blast_out
 
 	print realdbPath
 	
-	Create_Blastdb(databaseFilePath, 0, isNucleotideDB, realdbPath)
+	Create_Blastdb(databaseFilePath, 1, isNucleotideDB, realdbPath)
 	queryPath = os.path.join(os.getcwd(), queryFilePath)
 
 	print queryPath
