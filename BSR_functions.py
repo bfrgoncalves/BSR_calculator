@@ -48,7 +48,7 @@ def getOwnBlastScore(FASTAfile, dbName, blast_out_file):
 
 
 
-def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, bestmatches, blast_out_file):
+def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, blast_out_file):
 
 	fileNamequery = os.path.basename(pathQuery)
     
@@ -58,16 +58,17 @@ def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, bestmatc
 
 	translatedreferenceFile_path = Translate_FASTA(pathReference, fileNameref + '_translatedSequences.fasta')
 
-	cline = run_BLAST(translatedreferenceFile_path, pathDB, translatedqueryFile_path, False, blast_out_file)
+	cline = run_BLAST(translatedreferenceFile_path, pathDB, translatedqueryFile_path, True, blast_out_file)
 
-	allelescore=0
+	allelescore = 0
 	blast_records = runBlastParser( blast_out_file, "")
 
-	bestmatch=""
-	bestmatchArray = []
+	bestmatch = ""
+	bestmatchArray = {}
 	
 	for blast_record in blast_records:
-		found=False 
+		bestmatchArray[str(blast_record.query)] = []
+		
 		for alignment in blast_record.alignments:
 			for match in alignment.hsps:
 
@@ -75,18 +76,17 @@ def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, bestmatc
 
 				cdsStrName=blast_record.query
 
-				if(blastScoreRatio == 1 and bestmatches[str(alignment.hit_def)][2]=="No"):
-					bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
+				if blastScoreRatio > 0.6:
+					bestmatchArray[str(blast_record.query)].append([str(alignment.hit_def), str(match.score), str(blastScoreRatio)])
+					break
 
-				elif(blastScoreRatio == 1 and match.score>float(bestmatches[str(alignment.hit_def)][0])):
-					bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
+				#if(blastScoreRatio == 1 and bestmatches[str(alignment.hit_def)][2]=="No"):
+					#bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
 
-				elif(match.score>float(bestmatches[str(alignment.hit_def)][0]) and blastScoreRatio>0.6 and blastScoreRatio>float(bestmatches[str(alignment.hit_def)][1])):
-					bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
+				#elif(blastScoreRatio == 1 and match.score>float(bestmatches[str(alignment.hit_def)][0])):
+					#bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
 
-		
-	for i in bestmatches:
-		if bestmatches[i][2] == 'Yes':
-			bestmatchArray.append([i, bestmatches[i][1], bestmatches[i][3]])
+				#elif(match.score>float(bestmatches[str(alignment.hit_def)][0]) and blastScoreRatio>0.6 and blastScoreRatio>float(bestmatches[str(alignment.hit_def)][1])):
+				#	bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
 
 	return bestmatchArray

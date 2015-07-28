@@ -92,18 +92,36 @@ def main():
 	
 	countAlleles = 0
 
-	#for allelefile in onlyfiles:
-		#countAlleles += 1
-		#dbName = os.path.join(databaseDir, 'refDatabase')
-		#blast_out_file = dbName + '_BLAST_out_' + str(countAlleles) + '.xml'
-		#listOfArgs = (allelefile, dbName, blast_out_file, countAlleles)
+	referencePath = os.path.join(os.getcwd(), args.q)
+
+	job_args = []
+	allQueryBasePaths = []
+
+	BSRresults = {}
+
+	for allelefile in onlyfiles:
+		countAlleles += 1
+		dbName = os.path.join(databaseDir, 'refDatabase')
+		blast_out_file = dbName + '_BLAST_out_' + str(countAlleles) + '.xml'
+		listOfArgs = (allelefile, referencePath, dbName, alleleScores, blast_out_file, countAlleles)
+		action = 'BSR'
+		job_args, allQueryBasePaths = create_pickle(listOfArgs, uniqueAllelesFolder, job_args, action, 'BSR', allQueryBasePaths, countAlleles)
+
+	create_Jobs(job_args, 'getBLASTScoreRatios.py', allQueryBasePaths)
+
+	for i in allQueryBasePaths:
+		countResults += 1
+		filepath=os.path.join(i, str(countResults)+"_"+ action + "_result.txt")
+
+		with open(filepath,'rb') as f:
+			x = pickle.load(f)
+
+		for i in x[1]:
+			BSRresults[i] = x[1][i]
+
+	print BSRresults
 
 
-		#getBlastScoreRatios(pathQuery, pathDB, allelescores, bestmatches, blast_out_file)
-
-
-
-		
 
 
 if __name__ == "__main__":
