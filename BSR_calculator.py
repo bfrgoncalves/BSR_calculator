@@ -50,10 +50,9 @@ def main():
 	
 	fastaFile = HTSeq.FastaReader(args.q)
 	for allele in fastaFile:
-		x = str(translateSeq(allele.seq))
-		alleleProt=">"+str(allele.name)+"\n"+x+"\n"
-		with open(os.path.join(uniqueAllelesFolder,allele.name + '.fasta'), "w") as f:
-			f.write(alleleProt)
+		alleleSeq=">"+str(allele.name)+"\n"+str(allele.seq)+"\n"
+		with open(os.path.join(uniqueAllelesFolder, allele.name + '.fasta'), "w") as f:
+			f.write(alleleSeq)
 
 	onlyfiles = [ f for f in listdir(uniqueAllelesFolder) if isfile(join(uniqueAllelesFolder,f)) ]
 
