@@ -11,6 +11,8 @@ def getOwnBlastScore(FASTAfile, dbName, blast_out_file):
 
 	fileName = os.path.basename(FASTAfile)
 
+	print FASTAfile
+
 	translatedFile_path = Translate_FASTA(FASTAfile, fileName + '_translatedSequences.fasta')
 
 	cline = run_BLAST(translatedFile_path, dbName, translatedFile_path, False, blast_out_file)
