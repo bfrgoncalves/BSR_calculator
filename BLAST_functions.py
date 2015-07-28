@@ -35,12 +35,12 @@ def Create_Blastdb(questionDB, overwrite, dbtypeProt, dbName ):
 
 def run_BLAST(databaseFilePath, dbPath, queryFilePath, isNucleotideDB, blast_out_file):
 
-	databaseName = os.path.basename(dbPath)
-
-	if not os.path.isdir(databaseName):
-		os.makedirs(databaseName)
+	if not os.path.isdir(dbPath):
+		os.makedirs(dbPath)
 
 	realdbPath = os.path.join(dbPath, databaseName)
+
+	print realdbPath
 	
 	Create_Blastdb(databaseFilePath, 0, isNucleotideDB, realdbPath)
 	queryPath = os.path.join(os.getcwd(), queryFilePath)
