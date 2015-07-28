@@ -35,6 +35,8 @@ def Create_Blastdb(questionDB, overwrite, dbtypeProt, dbName ):
 
 def run_BLAST(databaseFilePath, dbPath, queryFilePath, isNucleotideDB, blast_out_file):
 
+	databaseName = os.path.basename(dbPath)
+
 	if not os.path.isdir(dbPath):
 		os.makedirs(dbPath)
 
