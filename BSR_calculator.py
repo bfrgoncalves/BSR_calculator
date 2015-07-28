@@ -65,10 +65,12 @@ def main():
 	alleleScores = {}
 
 	for allelefile in onlyfiles:
+
+		alleleFilePath = os.path.join(os.getcwd(), allelefile)
 		countAlleles += 1
 		dbName = os.path.join(databaseDir, 'refDatabase' + str(countAlleles))
 		blast_out_file = dbName + '_BLAST_out_' + str(countAlleles) + '.xml'
-		listOfArgs = (allelefile, dbName, blast_out_file, countAlleles)
+		listOfArgs = (alleleFilePath, dbName, blast_out_file, countAlleles)
 
 		action = 'OwnScore'
 		job_args, allQueryBasePaths = create_pickle(listOfArgs, uniqueAllelesFolder, job_args, action, 'OwnScore', allQueryBasePaths, countAlleles)
@@ -76,7 +78,7 @@ def main():
 	create_Jobs(job_args, 'getOwnBLASTScore.py', allQueryBasePaths)
 
 	countResults = 0
-	
+
 	for i in allQueryBasePaths:
 		countResults += 1
 		filepath=os.path.join(i, str(countResults)+"_"+ action + "_result.txt")
