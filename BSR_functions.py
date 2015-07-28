@@ -20,7 +20,7 @@ def getOwnBlastScore(FASTAfile, dbName, blast_out_file):
 
 	translatedFile_path = Translate_FASTA(FASTAfile, os.path.join(dirName, fileName + '_translatedSequences.fasta'))
 
-	cline = run_BLAST(translatedFile_path, dbName, translatedFile_path, False, blast_out_file)
+	cline = run_BLAST(translatedFile_path, dbName, translatedFile_path, True, blast_out_file)
 
 	blast_records = runBlastParser(blast_out_file, "")
 	
