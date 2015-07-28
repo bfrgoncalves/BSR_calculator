@@ -85,8 +85,8 @@ def main():
 		with open(filepath,'rb') as f:
 			x = pickle.load(f)
 
-		for i in x:
-			alleleScores[i] = x[i]
+		for i in x[1]:
+			alleleScores[i] = x[1][i]
 
 	print alleleScores
 	
