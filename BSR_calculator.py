@@ -62,6 +62,8 @@ def main():
 	job_args = []
 	allQueryBasePaths = []
 
+	alleleScores = {}
+
 	for allelefile in onlyfiles:
 		countAlleles += 1
 		dbName = os.path.join(databaseDir, 'refDatabase' + str(countAlleles))
@@ -80,7 +82,25 @@ def main():
 		with open(filepath,'rb') as f:
 			x = pickle.load(f)
 
-		print x
+		for i in x:
+			alleleScores[i] = x[i]
+
+	print alleleScores
+	
+	countAlleles = 0
+
+	#for allelefile in onlyfiles:
+		#countAlleles += 1
+		#dbName = os.path.join(databaseDir, 'refDatabase')
+		#blast_out_file = dbName + '_BLAST_out_' + str(countAlleles) + '.xml'
+		#listOfArgs = (allelefile, dbName, blast_out_file, countAlleles)
+
+
+		#getBlastScoreRatios(pathQuery, pathDB, allelescores, bestmatches, blast_out_file)
+
+
+
+		
 
 
 if __name__ == "__main__":

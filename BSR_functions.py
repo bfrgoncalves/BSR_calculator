@@ -3,12 +3,15 @@ from Translate_functions import Translate_FASTA
 from BLAST_functions import runBlastParser
 from BLAST_functions import Create_Blastdb
 from BLAST_functions import run_BLAST
+import os
 
 
 
 def getOwnBlastScore(FASTAfile, dbName, blast_out_file):
 
-	translatedFile_path = Translate_FASTA(FASTAfile, 'translatedSequences.fasta')
+	fileName = os.path.basename(FASTAfile)
+
+	translatedFile_path = Translate_FASTA(FASTAfile, fileName + '_translatedSequences.fasta')
 
 	cline = run_BLAST(translatedFile_path, dbName, translatedFile_path, False, blast_out_file)
 
@@ -38,11 +41,17 @@ def getOwnBlastScore(FASTAfile, dbName, blast_out_file):
 
 
 
-def getBlastScoreRatios(pathQuery, pathDB, allelescores, bestmatches, blast_out_file):
-    
-	translatedFile_path = Translate_FASTA(FASTAfile, 'translatedSequences.fasta')
+def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, bestmatches, blast_out_file):
 
-	run_BLAST(translatedFile_path, pathDB, False, blast_out_file)
+	fileNamequery = os.path.basename(pathQuery)
+    
+	translatedqueryFile_path = Translate_FASTA(pathQuery, fileNamequery + '_translatedSequences.fasta')
+
+	fileNameref = os.path.basename(pathReference)
+
+	translatedreferenceFile_path = Translate_FASTA(pathReference, fileNameref + '_translatedSequences.fasta')
+
+	cline = run_BLAST(translatedreferenceFile_path, pathDB, translatedqueryFile_path, False, blast_out_file)
 
 	allelescore=0
 	blast_records = runBlastParser( blast_out_file, "")

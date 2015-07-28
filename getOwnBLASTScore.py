@@ -24,7 +24,7 @@ def main():
 	def ownScoreCalc(args):
 	    ownScoreResults = getOwnBlastScore(args[0], args[1], args[2])
 
-	    final =	(args[0], ANI_results)
+	    final =	(args[0], ownScoreResults)
 
 	    filepath=os.path.join(temppath , str(args[3]) +"_OwnScore_result.txt")
 
@@ -34,7 +34,7 @@ def main():
 	    return True
 
 
-	ANI_calc(argumentList)
+	ownScoreCalc(argumentList)
 
 if __name__ == "__main__":
     main()
