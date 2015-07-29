@@ -154,7 +154,7 @@ def main():
 		tabFile.write(('\t'.join([str(x) for x in headers])) + '\n')
 		
 		for x in headers:
-			tabFile.write(x + '\t' + ('\t'.join([str(newResults[x]) for x in newResults])) + '\n')
+			tabFile.write(x + '\t' + ('\t'.join([str(newResults[x][0][z]) for z in newResults[x][0]])) + '\n')
 
 
 if __name__ == "__main__":
