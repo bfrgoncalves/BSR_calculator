@@ -32,6 +32,8 @@ def main():
 
 	databaseDir = os.path.join(os.getcwd(), 'Databases')
 
+	resultsFolder = os.path.join(os.getcwd(), args.o)
+
 	dbName = os.path.join(databaseDir, 'refDatabase')
 
 	blast_out_file = dbName + '_BLAST_out.xml'
@@ -145,9 +147,14 @@ def main():
 	
 	print newResults
 
-
-
-
+	with open(os.path.join(resultsFolder,'BSRresults.tab'), 'w') as tabFile:
+		headers = []
+		for i in newResults:
+			headers.push(i)
+		tabFile.write(('\t'.join([str(x) for x in headers])) + '\n')
+		
+		for x in headers:
+			tabFile.write(x + '\t' + ('\t'.join([str(newResults[x]) for x in newResults])) + '\n')
 
 
 if __name__ == "__main__":
