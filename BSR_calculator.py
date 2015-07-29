@@ -102,7 +102,7 @@ def main():
 	for allelefile in onlyfiles:
 		countAlleles += 1
 		alleleFilePath = os.path.join(os.getcwd(), 'Alleles', allelefile)
-		dbName = os.path.join(databaseDir, 'refDatabase')
+		dbName = os.path.join(databaseDir, 'refDatabase_' + str(countAlleles))
 		blast_out_file = dbName + '_BLAST_out_' + str(countAlleles) + '.xml'
 		listOfArgs = (alleleFilePath, referencePath, dbName, alleleScores, blast_out_file, countAlleles)
 		action = 'BSR'
