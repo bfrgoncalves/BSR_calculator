@@ -47,6 +47,7 @@ def run_BLAST(databaseFilePath, dbPath, queryFilePath, isProtDB, blast_out_file)
 	Create_Blastdb(databaseFilePath, 0, isProtDB, realdbPath)
 	queryPath = os.path.join(os.getcwd(), queryFilePath)
 
+	print databaseFilePath
 	print queryPath
 	print realdbPath
 	print blast_out_file
