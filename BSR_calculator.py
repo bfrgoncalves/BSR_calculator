@@ -128,8 +128,8 @@ def main():
 	newResults = {}
 	for i in BSRresults:
 		newResults[i] = []
+		toAppend = {}
 		for j in BSRresults[i]:
-			toAppend = {}
 			toAppend[j[0]] = j[2]
 		newResults[i].append(toAppend)
 
