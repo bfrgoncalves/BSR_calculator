@@ -122,7 +122,11 @@ def main():
 		for i in x[1]:
 			BSRresults[i] = x[1][i]
 
-	print BSRresults
+	#print BSRresults
+
+	for i in BSRresults:
+		print len(BSRresults[i])
+
 
 
 
