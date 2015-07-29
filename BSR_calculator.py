@@ -99,6 +99,7 @@ def main():
 
 	BSRresults = {}
 
+
 	for allelefile in onlyfiles:
 		countAlleles += 1
 		alleleFilePath = os.path.join(os.getcwd(), 'Alleles', allelefile)
@@ -123,9 +124,25 @@ def main():
 			BSRresults[i] = x[1][i]
 
 	#print BSRresults
-
+	alleleNames = {}
+	newResults = {}
 	for i in BSRresults:
-		print len(BSRresults[i]), i
+		newResults[i] = []
+		for j in BSRresults[i]:
+			toAppend = {}
+			toAppend[BSRresults[i][j][0]] = BSRresults[i][j][2]
+		newResults.append(toAppend)
+
+	for i in newResults:
+		for j in BSRresults:
+			try:
+				if newResults[i][0][j] > -1:
+					print 'Exists'
+			except KeyError:
+				newResults[i][0][j] = 0
+	
+	print newResults
+
 
 
 
