@@ -131,7 +131,7 @@ def main():
 		for j in BSRresults[i]:
 			toAppend = {}
 			toAppend[j[0]] = j[2]
-		newResults.append(toAppend)
+		newResults[i].append(toAppend)
 
 	for i in newResults:
 		for j in BSRresults:
