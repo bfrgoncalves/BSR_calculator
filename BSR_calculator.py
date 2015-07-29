@@ -133,13 +133,14 @@ def main():
 			toAppend[j[0]] = j[2]
 		newResults[i].append(toAppend)
 
+	print newResults
+
 	for i in newResults:
 		for j in BSRresults:
 			try:
 				if newResults[i][0][j] > -1:
 					print 'Exists'
 			except KeyError:
-				print newResults[i][0]
 				newResults[i][0][j] = 0
 	
 	#print newResults
