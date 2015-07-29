@@ -13,14 +13,12 @@ def getOwnBlastScore(FASTAfile, dbName, blast_out_file):
 
 	dirName = os.path.dirname(FASTAfile)
 
-	print FASTAfile
-	print fileName
-	print dirName
-	print dbName
 
 	translatedFile_path = Translate_FASTA(FASTAfile, os.path.join(dirName, fileName + '_translatedSequences.fasta'))
 
 	cline = run_BLAST(translatedFile_path, dbName, translatedFile_path, True, blast_out_file)
+
+	os.remove(translatedFile_path)
 
 	blast_records = runBlastParser(blast_out_file, "")
 	
@@ -64,6 +62,7 @@ def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, blast_ou
 
 
 	cline = run_BLAST(translatedreferenceFile_path, pathDB, translatedqueryFile_path, True, blast_out_file)
+
 
 	allelescore = 0
 	blast_records = runBlastParser( blast_out_file, "")
