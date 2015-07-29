@@ -125,7 +125,7 @@ def main():
 	#print BSRresults
 
 	for i in BSRresults:
-		print len(BSRresults[i])
+		print len(BSRresults[i]), i
 
 
 
