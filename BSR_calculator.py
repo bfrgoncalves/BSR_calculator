@@ -133,7 +133,7 @@ def main():
 			toAppend[j[0]] = j[2]
 		newResults[i].append(toAppend)
 
-	print newResults
+	#print newResults
 
 	for i in newResults:
 		for j in BSRresults:
@@ -143,7 +143,7 @@ def main():
 			except KeyError:
 				newResults[i][0][j] = 0
 	
-	#print newResults
+	print newResults
 
 
 
