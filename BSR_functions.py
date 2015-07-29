@@ -46,7 +46,7 @@ def getOwnBlastScore(FASTAfile, dbName, blast_out_file):
 
 
 
-def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, blast_out_file):
+def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, blast_out_file, countQueries):
 
 	fileNamequery = os.path.basename(pathQuery)
 

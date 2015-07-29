@@ -22,7 +22,7 @@ def main():
 
 
 	def BSRCalc(args):
-	    BSRResults = getBlastScoreRatios(args[0], args[1], args[2], args[3], args[4])
+	    BSRResults = getBlastScoreRatios(args[0], args[1], args[2], args[3], args[4], args[5])
 
 	    final =	(args[0], BSRResults)
 	    
