@@ -145,12 +145,11 @@ def main():
 			except KeyError:
 				newResults[i][0][j] = 0
 	
-	print newResults
 
 	with open(os.path.join(resultsFolder,'BSRresults.tab'), 'w') as tabFile:
 		headers = []
 		for i in newResults:
-			headers.push(i)
+			headers.append(i)
 		tabFile.write(('\t'.join([str(x) for x in headers])) + '\n')
 		
 		for x in headers:
