@@ -42,12 +42,14 @@ def run_BLAST(databaseFilePath, dbPath, queryFilePath, isProtDB, blast_out_file)
 
 	realdbPath = os.path.join(dbPath, databaseName)
 
-	print realdbPath
+	print 'AQUI'
 	
 	Create_Blastdb(databaseFilePath, 0, isProtDB, realdbPath)
 	queryPath = os.path.join(os.getcwd(), queryFilePath)
 
 	print queryPath
+	print realdbPath
+	print blast_out_file
 
 	if isProtDB:
 		cline = NcbiblastpCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5)
@@ -55,14 +57,12 @@ def run_BLAST(databaseFilePath, dbPath, queryFilePath, isProtDB, blast_out_file)
 		cline = NcbiblastnCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5)
 
 	os.system(str(cline))
-	print cline
-	return blast_out_file
 
 
 def runBlastParser(bOutFile, locus_sbjct):
 	rec = open(bOutFile)
 	blast_records = NCBIXML.parse(rec)
 
-	os.remove(bOutFile)
+	#os.remove(bOutFile)
 
 	return blast_records
