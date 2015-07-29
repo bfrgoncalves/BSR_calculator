@@ -139,9 +139,10 @@ def main():
 				if newResults[i][0][j] > -1:
 					print 'Exists'
 			except KeyError:
+				print newResults[i][0]
 				newResults[i][0][j] = 0
 	
-	print newResults
+	#print newResults
 
 
 
