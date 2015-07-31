@@ -131,12 +131,12 @@ def main():
 		newResults[i] = []
 		toAppend = {}
 		for j in BSRresults[i]:
-			toAppend[j[0]] = j[2]
+			toAppend[j[0]] = float(j[2])
 		newResults[i].append(toAppend)
-		print i
-		print toAppend
+	
 
-	#print newResults
+
+	print newResults
 
 	for i in newResults:
 		for j in BSRresults:
