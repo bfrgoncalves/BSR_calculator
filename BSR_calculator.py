@@ -123,6 +123,7 @@ def main():
 			x = pickle.load(f)
 
 		for i in x[1]:
+			print i
 			print x[1][i]
 			BSRresults[i] = x[1][i]
 
