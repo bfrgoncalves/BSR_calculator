@@ -142,7 +142,7 @@ def main():
 		for j in BSRresults:
 			try:
 				if newResults[i][0][j] > -1:
-					print 'Exists'
+					continue
 			except KeyError:
 				newResults[i][0][j] = 0
 	
