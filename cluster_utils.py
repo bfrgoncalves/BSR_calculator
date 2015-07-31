@@ -35,7 +35,6 @@ def create_Jobs(job_args, pythonScript, allQueryBasePaths):
 			print('Your job has been submitted with ID %s' % jobid)
 			with open("jobsid.txt","a") as f:
 				f.write(str(argList[0])+"\n"+str(jobid))
-			print('Your job has been submitted with ID %s' % jobid)
 			s.deleteJobTemplate(jt)
 			countargList +=1
 		for curjob in joblist:

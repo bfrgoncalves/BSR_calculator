@@ -88,9 +88,10 @@ def main():
 			x = pickle.load(f)
 
 		for i in x[1]:
+			print i
 			alleleScores[i] = x[1][i]
 
-	print alleleScores
+	#print alleleScores
 	
 	countAlleles = 0
 
@@ -150,7 +151,7 @@ def main():
 		headers = []
 		for i in newResults:
 			headers.append(i)
-		tabFile.write(('\t'.join([str(x) for x in headers])) + '\n')
+		tabFile.write('\t' + ('\t'.join([str(x) for x in headers])) + '\n')
 		
 		for x in headers:
 			tabFile.write(x + '\t' + ('\t'.join([str(newResults[x][0][z]) for z in newResults[x][0]])) + '\n')
