@@ -29,23 +29,33 @@ def main():
 
 	y_values = []
 	x_values = []
+	arrayOfColors = []
+
 
 	for i in my_y[0]:
+		arrayOfColors.append(numpy.random.rand(3,1))
 		y_values = y_values + i
+
+	#print arrayOfColors
 
 	for i in my_x[0]:
 		x_values = x_values + i
 
-	for i in range(0, len(y_values)):
-		if y_values[i] > 0.98 and x_values[i] < 0.56:
-			print 'AQUI', i
-			print y_values[i]
-			print x_values[i]
+	amount = len(y_values)
+	print amount
+	print len(arrayOfColors)
 
-	print len(y_values)
-	print len(x_values)
+	countIndexColor = 0
 
-	plot(x_values, y_values, marker='o', color='r', ls='')
+	for i in range(amount):
+		scatter(x_values[i], y_values[i], c=arrayOfColors[countIndexColor])
+		countIndexColor+=1
+		if countIndexColor == len(arrayOfColors)-1:
+			countIndexColor = 0
+	    #plot(x_values[i], y_values[i], color=numpy.random.rand(3,1))
+	#show()
+
+	#plot(x_values, y_values, marker='o', color='r', ls='')
 	xlabel(args.xl)
 	ylabel(args.yl)
 

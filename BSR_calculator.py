@@ -149,9 +149,6 @@ def main():
 			except KeyError:
 				newResults[i][0][j] = 0
 
-	print newResults
-	
-
 	with open(os.path.join(resultsFolder,'BSRresults.tab'), 'w') as tabFile:
 		headers = []
 		for i in newResults:
@@ -163,6 +160,9 @@ def main():
 			for y in headers:
 				tabFile.write(str(newResults[x][0][y]) + '\t')
 			tabFile.write('\n')
+
+	os.system("rm -r " + uniqueAllelesFolder)
+	os.system("rm -r " + databaseDir)
 
 
 if __name__ == "__main__":
