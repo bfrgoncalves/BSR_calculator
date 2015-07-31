@@ -123,12 +123,9 @@ def main():
 			x = pickle.load(f)
 
 		for i in x[1]:
-			print i
-			print x[1][i]
 			BSRresults[i] = x[1][i]
 
 	#print BSRresults
-	alleleNames = {}
 	newResults = {}
 	for i in BSRresults:
 		newResults[i] = []
@@ -136,6 +133,8 @@ def main():
 		for j in BSRresults[i]:
 			toAppend[j[0]] = j[2]
 		newResults[i].append(toAppend)
+		print i
+		print toAppend
 
 	#print newResults
 
