@@ -114,6 +114,7 @@ def main():
 	create_Jobs(job_args, 'getBLASTScoreRatios.py', allQueryBasePaths)
 
 	countResults = 0
+	allAlleles = []
 
 	for i in allQueryBasePaths:
 		countResults += 1
@@ -123,6 +124,8 @@ def main():
 			x = pickle.load(f)
 
 		for i in x[1]:
+			if i not in allAlleles:
+				allAlleles.append(i)
 			BSRresults[i] = x[1][i]
 
 	#print BSRresults
@@ -136,15 +139,17 @@ def main():
 	
 
 
-	print newResults
+	#print newResults
 
 	for i in newResults:
-		for j in BSRresults:
+		for j in allAlleles:
 			try:
 				if newResults[i][0][j] > -1:
 					continue
 			except KeyError:
 				newResults[i][0][j] = 0
+
+	print newResults
 	
 
 	with open(os.path.join(resultsFolder,'BSRresults.tab'), 'w') as tabFile:
@@ -154,7 +159,10 @@ def main():
 		tabFile.write('\t' + ('\t'.join([str(x) for x in headers])) + '\n')
 		
 		for x in headers:
-			tabFile.write(x + '\t' + ('\t'.join([str(newResults[x][0][z]) for z in newResults[x][0]])) + '\n')
+			tabFile.write(x + '\t')
+			for y in headers:
+				tabFile.write(str(newResults[x][0][y]) + '\t')
+			tabFile.write('\n')
 
 
 if __name__ == "__main__":
