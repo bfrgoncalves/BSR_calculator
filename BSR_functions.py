@@ -80,7 +80,7 @@ def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, blast_ou
 
 				cdsStrName=blast_record.query
 
-				if blastScoreRatio > 0.6:
+				if blastScoreRatio > 0:
 					bestmatchArray[str(blast_record.query)].append([str(alignment.hit_def), str(match.score), str(blastScoreRatio)])
 					break
 
