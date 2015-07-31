@@ -88,7 +88,6 @@ def main():
 			x = pickle.load(f)
 
 		for i in x[1]:
-			print i
 			alleleScores[i] = x[1][i]
 
 	#print alleleScores
@@ -124,6 +123,7 @@ def main():
 			x = pickle.load(f)
 
 		for i in x[1]:
+			print i
 			BSRresults[i] = x[1][i]
 
 	#print BSRresults
