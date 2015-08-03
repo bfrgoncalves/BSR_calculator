@@ -36,7 +36,7 @@ def main():
 		countToGo += 1
 		arrayOfColors.append(numpy.random.rand(3,1))
 		y_values = y_values + i[:countToGo]
-		
+
 
 	countToGo = 0
 	for i in my_x[0]:
@@ -59,7 +59,7 @@ def main():
 	xlabel(args.xl)
 	ylabel(args.yl)
 
-	show()
+	savefig('test.png')
 
 
 

@@ -135,6 +135,7 @@ def main():
 		toAppend = {}
 		for j in BSRresults[i]:
 			toAppend[j[0]] = float(j[2])
+		print len(toAppend)
 		newResults[i].append(toAppend)
 	
 
