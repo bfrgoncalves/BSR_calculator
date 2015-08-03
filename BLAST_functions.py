@@ -51,9 +51,9 @@ def run_BLAST(databaseFilePath, dbPath, queryFilePath, isProtDB, blast_out_file)
 
 
 	if isProtDB:
-		cline = NcbiblastpCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5, num_descriptions = 100000)
+		cline = NcbiblastpCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5, num_descriptions = 100000, num_alignments=100000)
 	else:
-		cline = NcbiblastnCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5, num_descriptions = 100000)
+		cline = NcbiblastnCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5, num_descriptions = 100000, num_alignments=100000)
 
 	os.system(str(cline))
 
