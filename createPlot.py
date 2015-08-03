@@ -9,6 +9,7 @@ import sys
 from datetime import datetime
 import numpy
 import string
+import matplotlib.pyplot as plt
 from pylab import *
 
 def main():
@@ -47,22 +48,25 @@ def main():
 
 	countIndexColor = 0
 
-	for i in range(amount/50):
-		scatter(x_values[i], y_values[i], c=arrayOfColors[countIndexColor])
-		countIndexColor+=1
-		if countIndexColor == len(arrayOfColors)-1:
-			countIndexColor = 0
+	print amount
+
+	#for i in range(amount):
+		#scatter(x_values, y_values, marker='o', color=arrayOfColors[countIndexColor], ls='')
+		#countIndexColor+=1
+		#print i
+		#if i == 1000:
+			#break
+		#if countIndexColor == len(arrayOfColors)-1:
+			#countIndexColor = 0
 	    #plot(x_values[i], y_values[i], color=numpy.random.rand(3,1))
 	#show()
 
-	#plot(x_values, y_values, marker='o', color='r', ls='')
+	plot(x_values, y_values, marker='o', color='r', ls='')
 	xlabel(args.xl)
 	ylabel(args.yl)
 
-	savefig('test.png')
-
-
-
+	#savefig('test.png')
+	show()
 
 
 def importData(filename):
