@@ -31,23 +31,23 @@ def main():
 	x_values = []
 	arrayOfColors = []
 
-
+	countToGo = 0
 	for i in my_y[0]:
+		countToGo += 1
 		arrayOfColors.append(numpy.random.rand(3,1))
-		y_values = y_values + i
+		y_values = y_values + i[:countToGo]
+		
 
-	#print arrayOfColors
-
+	countToGo = 0
 	for i in my_x[0]:
-		x_values = x_values + i
+		countToGo += 1
+		x_values = x_values + i[:countToGo]
 
 	amount = len(y_values)
-	print amount
-	print len(arrayOfColors)
 
 	countIndexColor = 0
 
-	for i in range(amount):
+	for i in range(amount/50):
 		scatter(x_values[i], y_values[i], c=arrayOfColors[countIndexColor])
 		countIndexColor+=1
 		if countIndexColor == len(arrayOfColors)-1:

@@ -16,15 +16,17 @@ def main():
 
 	parser = argparse.ArgumentParser(description="This program calculates the BLAST-score ratio (BSR) between a query sequence file and a reference sequence file.")
 	parser.add_argument('-x', nargs='?', type=str, help="query Matrix", required=True)
+	parser.add_argument('-xd', nargs='?', type=str, help='query delimiter (tab or csv)', required=True)
 	parser.add_argument('-y', nargs='?', type=str, help='reference Matrix', required=True)
+	parser.add_argument('-yd', nargs='?', type=str, help='reference delimiter (tab or csv)', required=True)
 	#parser.add_argument('-c', nargs='?', type=int, help='Number of BSR and nucleotide similarity calculations.', required=True)
 	parser.add_argument('-o', nargs='?', type=str, help="results folder", required=True)
 
 	args = parser.parse_args()
 
 
-	my_x = importMatrix(args.x, ',', 1.0)
-	my_y = importMatrix(args.y, '\t', 1.0)
+	my_x = importMatrix(args.x, args.xd, 1.0)
+	my_y = importMatrix(args.y, args.yd, 1.0)
 
 	writeMatrix('newX.tab', my_x)
 	writeMatrix('newY.tab', my_y)
@@ -34,12 +36,18 @@ def importMatrix(fileName, delimiter, ifEmpty):
 	matrix={}
 	row_header=[]
 	first_row=True
+	if delimiter == 'tab':
+		delimiter = '\t'
+	elif delimiter == 'csv':
+		delimiter = ','
 
 	for line in open(fileName,'rU').xreadlines():         
 		t = string.split(line[:-1], delimiter) ### remove end-of-line character - file is tab-delimited
 		#print t
 		if first_row:
 			headers = t[1:]
+			print t
+			print headers
 			first_row=False
 		else:
 			#print t[0]
@@ -76,7 +84,6 @@ def writeMatrix(resultsFile, matrix):
 		tabFile.write('\t' + ('\t'.join([str(x) for x in headers])) + '\n')
 		
 		for x in matrix:
-			print x
 			#sortedLine = sorted(x[1][0].items(), key=operator.itemgetter(0))
 			Line = x[1][0]
 			tabFile.write(x[0] + '\t' + ('\t'.join([str(z[1]) for z in Line])) + '\n')

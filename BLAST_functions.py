@@ -19,6 +19,9 @@ def Create_Blastdb(questionDB, overwrite, dbtypeProt, dbName ):
 		if not isProt:
 			os.system( "makeblastdb -in " + questionDB + " -out " + dbName + " -dbtype nucl -logfile " + dbName + "_blast.log" )
 		else:
+			print isProt
+			print questionDB
+			print dbName
 			os.system( "makeblastdb -in " + questionDB + " -out " + dbName + " -dbtype prot -logfile " + dbName + "_blast.log" )
 
 	elif overwrite:
@@ -47,13 +50,8 @@ def run_BLAST(databaseFilePath, dbPath, queryFilePath, isProtDB, blast_out_file)
 	Create_Blastdb(databaseFilePath, 0, isProtDB, realdbPath)
 	queryPath = os.path.join(os.getcwd(), queryFilePath)
 
-	print databaseFilePath
-	print queryPath
-	print realdbPath
-	print blast_out_file
 
 	if isProtDB:
-		print 'isProt'
 		cline = NcbiblastpCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5)
 	else:
 		cline = NcbiblastnCommandline(query=queryPath, db=realdbPath, out=blast_out_file, outfmt=5)
