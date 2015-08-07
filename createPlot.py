@@ -36,19 +36,17 @@ def main():
 	for i in my_y[0]:
 		countToGo += 1
 		arrayOfColors.append(numpy.random.rand(3,1))
-		y_values = y_values + i[:countToGo]
+		y_values = y_values + i
 
 
 	countToGo = 0
 	for i in my_x[0]:
 		countToGo += 1
-		x_values = x_values + i[:countToGo]
+		x_values = x_values + i
 
 	amount = len(y_values)
 
 	countIndexColor = 0
-
-	print amount
 
 	#for i in range(amount):
 		#scatter(x_values, y_values, marker='o', color=arrayOfColors[countIndexColor], ls='')

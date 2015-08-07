@@ -84,13 +84,4 @@ def getBlastScoreRatios(pathQuery, pathReference, pathDB, allelescores, blast_ou
 					bestmatchArray[str(blast_record.query)].append([str(alignment.hit_def), str(match.score), str(blastScoreRatio)])
 					break
 
-				#if(blastScoreRatio == 1 and bestmatches[str(alignment.hit_def)][2]=="No"):
-					#bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
-
-				#elif(blastScoreRatio == 1 and match.score>float(bestmatches[str(alignment.hit_def)][0])):
-					#bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
-
-				#elif(match.score>float(bestmatches[str(alignment.hit_def)][0]) and blastScoreRatio>0.6 and blastScoreRatio>float(bestmatches[str(alignment.hit_def)][1])):
-				#	bestmatches[str(alignment.hit_def)]=[str(match.score),str(blastScoreRatio),"Yes", blast_record.query]
-
 	return bestmatchArray

@@ -163,7 +163,7 @@ def main():
 			tabFile.write('\n')
 
 	os.system("rm -r " + uniqueAllelesFolder)
-	#os.system("rm -r " + databaseDir)
+	os.system("rm -r " + databaseDir)
 
 
 if __name__ == "__main__":
