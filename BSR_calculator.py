@@ -135,7 +135,6 @@ def main():
 		toAppend = {}
 		for j in BSRresults[i]:
 			toAppend[j[0]] = float(j[2])
-		print len(toAppend)
 		newResults[i].append(toAppend)
 	
 
@@ -163,7 +162,7 @@ def main():
 			tabFile.write('\n')
 
 	os.system("rm -r " + uniqueAllelesFolder)
-	#os.system("rm -r " + databaseDir)
+	os.system("rm -r " + databaseDir)
 
 
 if __name__ == "__main__":
